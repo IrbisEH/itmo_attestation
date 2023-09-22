@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="192.168.1.37" id="fdbc6c2d-0d4d-42f0-98c7-24b8e01d552d" port="22" customName="ITMO" nameFormat="CUSTOM" username="root-vm" useOpenSSHConfig="true">
+        <option name="customName" value="ITMO" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

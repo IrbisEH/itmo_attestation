@@ -8,7 +8,12 @@ KEY_TRANSFORM = {
     "Авторы": "authors"
 }
 
-COVER_TYPES = ['hardcover', 'paperback', 'leatherbound', 'e-book', 'audiobook', 'other']
+COVER_TYPES = ['hardcover', 'paperback', 'leatherbound', 'other']
+
+STATUS_TYPES = [
+    'ordered', 'processing', 'awaiting payment', 'preparing for shipment',
+    'delivered', 'canceled', 'refunded', 'pending', 'completed', 'issues'
+]
 
 PUBLISHERS = [
     "Книжный мир",

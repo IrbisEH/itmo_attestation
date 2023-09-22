@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ea4c82f1-c7dc-4225-bd70-bf07c852a14c" name="ITMO">
+        <fileTransfer accessType="SFTP" host="192.168.1.37" port="22" sshConfigId="fdbc6c2d-0d4d-42f0-98c7-24b8e01d552d" sshConfig="ITMO">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

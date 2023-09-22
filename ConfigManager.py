@@ -8,5 +8,4 @@ class ConfigManager:
         self.db_password = os.getenv('DB_PASSWORD')
         self.db_host = os.getenv('DB_HOST')
         self.db_port = os.getenv('DB_PORT')
-
-        self.create_tables_file = os.path.join(os.path.dirname(__file__), 'book_shop.sql')
+        self.max_books = int(os.getenv('MAX_BOOKS_SCRAP', 500))

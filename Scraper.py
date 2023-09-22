@@ -40,21 +40,10 @@ class User:
         end_date = datetime(2010, 12, 31)
         return start_date + timedelta(days=random.randint(0, (end_date - start_date).days))
 
-    def to_dict(self):
-        return {
-            'name': self.name,
-            'email': self.email,
-            'password': self.password,
-            'phone_num': self.phone_num,
-            'birthday': self.birthday,
-            'role_name': self.role_name,
-            'active_status': self.active_status
-        }
-
 
 class Review:
     def __init__(self, user=None, review_text=None):
-        self.user = user,
+        self.user = user
         self.text = review_text
 
 
@@ -85,6 +74,8 @@ class Book:
             self.authors = [i.strip() for i in self.authors]
 
     def get_random_values(self):
+        if self.authors is None:
+            self.authors = []
         if self.price is None:
             self.price = random.randint(200, 600)
         if self.publ_year is None:
@@ -131,13 +122,33 @@ def get_book(url):
 
     except Exception as e:
         print(e)
-        traceback.print_exc()
 
+
+def get_book_series(url):
+    book_ids = []
+    try:
+        response = requests.get(url, timeout=5)
+        if response.status_code != 200:
+            raise Exception(f'{url} code: {response.status_code}')
+        soup_html = BeautifulSoup(response.text, 'html.parser')
+
+        book_el = soup_html.find_all('div', class_='ci')
+        for el in book_el:
+            book_href = el.find('a')['href']
+            book_id = book_href.split('=')[1]
+            book_ids.append(book_id)
+
+
+
+    except Exception as e:
+        print(e)
+
+    return book_ids
 
 def is_book_page(soup_html):
     cat_element = soup_html.find('div', class_='xI')
     if cat_element:
-        element = cat_element.find('span', itemprop='name', text='Книги')
+        element = cat_element.find('span', itemprop='name', string='Книги')
         if element is not None and element.get_text() == 'Книги':
             return True
     return False
@@ -177,7 +188,7 @@ def get_description(soup_html):
 
 
 def get_series_info(soup_html):
-    series_element = soup_html.find('td', text='Серия')
+    series_element = soup_html.find('td', string='Серия')
     if series_element:
         series_link = series_element.find_next('a')
         if series_link:
